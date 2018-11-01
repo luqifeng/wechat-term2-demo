@@ -11,6 +11,9 @@ var config = {
     service: {
         host,
 
+        //电影首页
+        movieHome: `${host}/weapp/movieHome`,
+
         // 登录地址，用于建立会话
         loginUrl: `${host}/weapp/login`,
 

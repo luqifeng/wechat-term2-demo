@@ -17,11 +17,12 @@ Page({
     })
 
     qcloud.request({
-      url: config.service.productList,
+      url: config.service.movieHome,
       success: result => {
         wx.hideLoading()
 
         let data = result.data
+        console.log(data)
         if (!data.code) {
           this.setData({
             productList: data.data
