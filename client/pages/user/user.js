@@ -16,7 +16,8 @@ Page({
         this.setData({
           userInfo
         })
-      }
+      },
+
     })
   },
 

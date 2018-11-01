@@ -11,9 +11,12 @@ App({
 
     login({ success, error }) {
       wx.getSetting({
+        
         success: res => {
+          console.log("getSetting:success")
           if (res.authSetting['scope.userInfo'] === false) {
             // 已拒绝授权
+            console.log("无授权，准备获取。")
             wx.showModal({
               title: '提示',
               content: '请授权我们获取您的用户信息',
@@ -24,6 +27,10 @@ App({
                     if (res.authSetting['scope.userInfo'] === true) {
                       this.doQcloudLogin({ success, error })
                     }
+                  },
+                  fail: res => {
+                    console.log("error1")
+                    console.log(res)
                   }
                 })
               }
@@ -31,6 +38,10 @@ App({
           } else {
             this.doQcloudLogin({ success, error })
           }
+        },
+        fail: () => {
+          console.log("getSetting:fail")
+          error && error()
         }
       })
     },
@@ -40,17 +51,21 @@ App({
       qcloud.login({
         success: result => {
           if (result) {
+            console.log("qcloud.login:success")
             userInfo = result
 
             success && success({
               userInfo
             })
           } else {
+            console.log("qcloud.login:else")
             // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
             this.getUserInfo({ success, error })
           }
         },
-        fail: () => {
+        fail: (result) => {
+          console.log("doQcloudLogin:fail")
+          console.log(result)
           error && error()
         }
       })

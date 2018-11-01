@@ -1,12 +1,17 @@
 {
-	"client": "./client",
-	"svr": "./server",
-	"miniprogramRoot": "./client",
-	"qcloudRoot": "./server",
+	"client": "client/",
+	"svr": "server/",
+	"miniprogramRoot": "client/",
+	"qcloudRoot": "server/",
 	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
 		"newFeature": true
 	},
-	"appid": "touristappid",
-	"projectname": "%E5%95%86%E5%9F%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F",
+	"appid": "wx798c289d81b932cd",
+	"projectname": "%E5%BD%B1%E8%AF%84%E5%B0%8F%E7%A8%8B%E5%BA%8F",
+	"libVersion": "2.3.2",
 	"condition": {}
 }
