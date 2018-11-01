@@ -10,15 +10,15 @@ module.exports = {
     let username = ctx.state.$wxInfo.userinfo.nickName
     let avatar = ctx.state.$wxInfo.userinfo.avatarUrl
     
-    let productId = +ctx.request.body.product_id
+    let movie_id = +ctx.request.body.movie_id
     let content = ctx.request.body.content || null
     
-    let images = ctx.request.body.images || []
-    images = images.join(';;')
+    let record = ctx.request.body.record || []
+    //images = images.join(';;')
 
 
     if (!isNaN(productId)) {
-      await DB.query('INSERT INTO comment(user, username, avatar, content, images, product_id) VALUES (?, ?, ?, ?, ?, ?)', [user, username, avatar, content, images, productId])
+      await DB.query('INSERT INTO comment(user, username, avatar, content, record, movie_id) VALUES (?, ?, ?, ?, ?, ?)', [user, username, avatar, content, record, movie_id])
     }
 
     ctx.state.data = {}
@@ -28,10 +28,10 @@ module.exports = {
    * 获取评论列表
    */
   list: async ctx => {
-    let productId = +ctx.request.query.product_id
+    let movie_id = +ctx.request.query.movie_id
     
     if (!isNaN(productId)) {
-      ctx.state.data = await DB.query('select * from comment where comment.product_id = ?', [productId])
+      ctx.state.data = await DB.query('select * from comment where comment.movie_id = ?', [movie_id])
     } else {
       ctx.state.data = []
     }
