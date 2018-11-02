@@ -28,8 +28,9 @@ App({
                       this.doQcloudLogin({ success, error })
                     }
                   },
-                  fail: res => {
-                    console.log("error1")
+                  fail: (result) => {
+                    console.log("login-s:fail")
+                    console.log(result)
                     console.log(res)
                   }
                 })
@@ -39,8 +40,9 @@ App({
             this.doQcloudLogin({ success, error })
           }
         },
-        fail: () => {
-          console.log("getSetting:fail")
+        fail: (result) => {
+          console.log("login:fail")
+          console.log(result)
           error && error()
         }
       })
@@ -90,7 +92,9 @@ App({
             error && error()
           }
         },
-        fail: () => {
+        fail: (result) => {
+          console.log("getUserInfo:fail")
+          console.log(result)
           error && error()
         }
       })
@@ -113,12 +117,16 @@ App({
                 userInfo
               })
             },
-            fail: () => {
+            fail: (result) => {
+              console.log("checkSession-s:fail")
+              console.log(result)
               error && error()
             }
           })
         },
-        fail: () => {
+        fail: (result) => {
+          console.log("checkSession:fail")
+          console.log(result)
           error && error()
         }
       })

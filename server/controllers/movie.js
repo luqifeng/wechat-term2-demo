@@ -15,13 +15,13 @@ module.exports = {
   },
 
   myMovieList: async ctx => {
-    let userID = ctx.request.query.product_id
+    let user = ctx.state.$wxInfo.userinfo.openId
 
-    if (!isNaN(productId)) {
-      ctx.state.data = await DB.query("SELECT * FROM comment join in movies on comment.movie_id = movies.id where comment.user =;")
-    } else {
-      ctx.state.data = []
-    }
+    //if (!isNaN(user)) {
+    ctx.state.data = await DB.query("SELECT * FROM comment join movies on comment.movie_id = movies.id where comment.user = ?;",[user])
+    //} else {
+    //  ctx.state.data = [user]
+    //}
     
   }
 

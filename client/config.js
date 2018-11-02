@@ -3,7 +3,7 @@
  */
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var host = 'https://byiwuo5s.qcloud.la';
+var host = 'https://740832986.lqf.name';
 
 var config = {
 
@@ -13,6 +13,9 @@ var config = {
 
         //电影首页
         movieHome: `${host}/weapp/movieHome`,
+
+        //我的电影
+        myMovieList: `${host}/weapp/myMovieList`,
 
         // 登录地址，用于建立会话
         loginUrl: `${host}/weapp/login`,

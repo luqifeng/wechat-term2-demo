@@ -1,4 +1,6 @@
 // pages/user/user.js
+const qcloud = require('../../vendor/wafer2-client-sdk/index')
+const config = require('../../config.js')
 const app = getApp()
 
 Page({
@@ -8,6 +10,7 @@ Page({
    */
   data: {
     userInfo: null,
+    commentList: []
   },
 
   onTapLogin() {
@@ -16,8 +19,47 @@ Page({
         this.setData({
           userInfo
         })
+        console.log(userInfo)
       },
 
+    })
+  },
+
+  getMyComments() {
+    wx.showLoading({
+      title: '刷新购物车数据...',
+    })
+    console.log(this.data.userInfo)
+    qcloud.request({
+      url: config.service.myMovieList,
+      login: true,
+      data: {
+        user: this.data.userInfo['openId']
+      },
+      success: result => {
+        wx.hideLoading()
+        let data = result.data
+        console.log(data)
+        if (!data.code) {
+          this.setData({
+            trolleyList: data.data
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '数据刷新失败',
+          })
+        }
+      },
+      fail: (result) => {
+        console.log(result)
+        wx.hideLoading()
+
+        wx.showToast({
+          icon: 'none',
+          title: '数据刷新失败',
+        })
+      }
     })
   },
 
@@ -56,11 +98,15 @@ Page({
   onShow: function () {
     app.checkSession({
       success: ({ userInfo }) => {
+        console.log(userInfo)
         this.setData({
           userInfo
         })
+        this.getMyComments()
       }
+      
     })
+    
   },
 
   /**
@@ -81,7 +127,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    wx.stopPullDownRefresh()
+    this.getMyComments()
   },
 
   /**
