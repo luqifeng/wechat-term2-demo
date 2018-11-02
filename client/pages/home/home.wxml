@@ -1,18 +1,20 @@
 <!--pages/home/home.wxml-->
 <view style='display:flex;justify-content: center;'>
-  <image mode='aspectFill'  src='{{productList[0].image}}' style='width:600rpx;height:800rpx' ></image>
+  <navigator url='/pages/detail/detail'>
+    <image mode='aspectFit'  src='{{productList[0].image}}' style='width:600rpx;height:800rpx' ></image>
+  </navigator>
 </view>
 <view style='display:flex;justify-content:center;'>
   <text style='font-size:50rpx;'>{{productList[0].title}}</text>
 </view>
 <view style='display:flex;justify-content:center;'>
-  <navigator>{{productList[0].username}}给你推荐了一部电影</navigator>
+  <navigator url='/pages/comment/comment'>{{productList[0].username}}给你推荐了一部电影</navigator>
 </view>
 <view style='position:relative;top:100rpx'>
   <view style='display:flex;flex-direction:row;justify-content:space-around;'>
-    <navigator>热门
+    <navigator url='/pages/movies/movies'>热门
     </navigator>
-    <navigator>我的
+    <navigator url='/pages/user/user'>我的
     </navigator>
   </view>
 </view>

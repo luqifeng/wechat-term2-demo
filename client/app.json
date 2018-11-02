@@ -1,18 +1,21 @@
 {
-  "pages":[
+  "pages": [
     "pages/home/home",
     "pages/detail/detail",
     "pages/order/order",
     "pages/trolley/trolley",
     "pages/user/user",
     "pages/add-comment/add-comment",
-    "pages/comment/comment"
+    "pages/comment/comment",
+    "pages/movies/movies",
+    "pages/my-comments/my-comments"
   ],
-  "window":{
-    "backgroundColor":"#F6F6F6",
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ececee",
     "navigationBarTitleText": "Wafer Quick Start",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   }
 }
