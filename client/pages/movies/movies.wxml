@@ -1,2 +1,14 @@
 <!--client/pages/movies/movies.wxml-->
-<text>client/pages/movies/movies.wxml</text>
+    <view wx:for="{{movieList}}" wx:key="id" >
+      <navigator url='/pages/detail/detail?id={{item.id}}'>
+        <view style='display: flex;flex-direction: row;'>
+          <view>
+            <image style='width:200rpx;height:150rpx' mode="aspectFit" src="{{item.image}}"></image>
+          </view>
+          <view >
+            <view>{{item.title}}</view>
+            <view>{{item.category}}</view>
+          </view>
+        </view>
+      </navigator>
+    </view>

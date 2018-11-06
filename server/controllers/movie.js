@@ -17,13 +17,39 @@ module.exports = {
   myMovieList: async ctx => {
     let user = ctx.state.$wxInfo.userinfo.openId
 
-    //if (!isNaN(user)) {
     ctx.state.data = await DB.query("SELECT * FROM comment join movies on comment.movie_id = movies.id where comment.user = ?;",[user])
+    
+  },
+
+  movieComments: async ctx => {
+    
+    let movieID = ctx.request.query.movie_id
+
+    ctx.state.data = await DB.query("SELECT * FROM comment join movies on comment.movie_id = movies.id where comment.movie_id = ?;", [movieID])
+
+  },
+
+  movieDetail: async ctx => {
+    let movieID = ctx.params.id
+
+    //if (!isNaN(user)) {
+    ctx.state.data = await DB.query("SELECT * FROM movies where id = ?;", [movieID])
     //} else {
     //  ctx.state.data = [user]
     //}
-    
-  }
+
+  },
+
+  commentDetail: async ctx => {
+    let commentID = ctx.params.id
+
+    //if (!isNaN(user)) {
+    ctx.state.data = await DB.query("SELECT * FROM comment where id = ?;", [commentID])
+    //} else {
+    //  ctx.state.data = [user]
+    //}
+
+  },
 
 
 }

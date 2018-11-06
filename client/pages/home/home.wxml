@@ -1,6 +1,6 @@
 <!--pages/home/home.wxml-->
 <view style='display:flex;justify-content: center;'>
-  <navigator url='/pages/detail/detail'>
+  <navigator url='/pages/detail/detail?id={{productList[0].movie_id}}'>
     <image mode='aspectFit'  src='{{productList[0].image}}' style='width:600rpx;height:800rpx' ></image>
   </navigator>
 </view>

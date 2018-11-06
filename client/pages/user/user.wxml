@@ -16,14 +16,19 @@
     <view class="user-name">{{userInfo.nickName}}</view>
   </view>
   <view class="user-split"></view>
-  <view class="user-options">
-    <view class="option" bindtap="onTapAddress">
-      <view class="option-title">收货地址</view>
-      <image class="option-arrow" src="/images/grey-arrow.png"></image>
+  
+  
+    <view wx:for="{{commentList}}" wx:key="id" >
+      <view style='display: flex;flex-direction: row;'>
+        <view>
+          <image style='width:200rpx;height:150rpx' mode="aspectFit" src="{{item.image}}"></image>
+        </view>
+        <view >
+          <view>{{item.title}}</view>
+          <view>{{item.content}}</view>
+        </view>
+      </view>
     </view>
-    <view class="option" bindtap="onTapKf">
-      <view class="option-title">联系客服</view>
-      <image class="option-arrow" src="/images/grey-arrow.png"></image>
-    </view>
-  </view>
+  
+
 </view>

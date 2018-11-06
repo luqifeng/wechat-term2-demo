@@ -17,6 +17,18 @@ var config = {
         //我的电影
         myMovieList: `${host}/weapp/myMovieList`,
 
+        //热门电影
+        movieList: `${host}/weapp/movieList`,
+
+        //电影评价
+        movieComments: `${host}/weapp/movieComments`,
+
+        //电影细节
+        movieDetail: `${host}/weapp/movieDetail/`,
+
+        //评价细节
+        commentDetail: `${host}/weapp/commentDetail`,
+
         // 登录地址，用于建立会话
         loginUrl: `${host}/weapp/login`,
 

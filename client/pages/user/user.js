@@ -29,20 +29,20 @@ Page({
     wx.showLoading({
       title: '刷新购物车数据...',
     })
-    console.log(this.data.userInfo)
+    //console.log(this.data.userInfo)
     qcloud.request({
       url: config.service.myMovieList,
       login: true,
-      data: {
-        user: this.data.userInfo['openId']
-      },
+      // data: {
+      //   user: this.data.userInfo['openId']
+      // },
       success: result => {
         wx.hideLoading()
         let data = result.data
         console.log(data)
         if (!data.code) {
           this.setData({
-            trolleyList: data.data
+            commentList: data.data
           })
         } else {
           wx.showToast({

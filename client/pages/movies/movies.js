@@ -1,4 +1,6 @@
 // client/pages/movies/movies.js
+const qcloud = require('../../vendor/wafer2-client-sdk/index')
+const config = require('../../config')
 Page({
 
   /**
@@ -6,6 +8,43 @@ Page({
    */
   data: {
 
+    movieList: [], // 购物车商品列表
+
+  },
+
+  getMovies() {
+    wx.showLoading({
+      title: '刷新购物车数据...',
+    })
+
+    qcloud.request({
+      url: config.service.movieList,
+      login: true,
+      success: result => {
+        wx.hideLoading()
+
+        let data = result.data
+        console.log(data)
+        if (!data.code) {
+          this.setData({
+            movieList: data.data
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '数据刷新失败',
+          })
+        }
+      },
+      fail: () => {
+        wx.hideLoading()
+
+        wx.showToast({
+          icon: 'none',
+          title: '数据刷新失败',
+        })
+      }
+    })
   },
 
   /**
@@ -26,7 +65,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getMovies()
   },
 
   /**

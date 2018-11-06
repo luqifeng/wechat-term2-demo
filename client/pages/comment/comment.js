@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    movie: {},
     commentList: [], // 评论列表
   },
 
@@ -24,20 +25,15 @@ Page({
 
   getCommentList(id) {
     qcloud.request({
-      url: config.service.commentList,
-      data: {
-        product_id: id
-      },
+      url: config.service.movieComments +"?movie_id="+this.data.movie.id,
+
       success: result => {
         let data = result.data
+        console.log(data)
         if (!data.code) {
           this.setData({
-            commentList: data.data.map(item => {
-              let itemDate = new Date(item.create_time)
-              item.createTime = _.formatTime(itemDate)
-              item.images = item.images ? item.images.split(';;') : []
-              return item
-            })
+            commentList: data.data
+            
           })
         }
       },
@@ -48,16 +44,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let product = {
+    let movie = {
       id: options.id,
-      name: options.name,
-      price: options.price,
-      image: options.image
     }
     this.setData({
-      product: product
+      movie: movie
     })
-    this.getCommentList(product.id)
+    console.log(movie)
+    
   },
 
   /**
@@ -71,7 +65,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getCommentList(this.data.movie.id)
   },
 
   /**

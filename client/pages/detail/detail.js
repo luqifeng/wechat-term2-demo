@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    product: {},
+    movie: [],
   },
 
   getProduct(id){
@@ -19,7 +19,7 @@ Page({
     })
 
     qcloud.request({
-      url: config.service.productDetail + id,
+      url: config.service.movieDetail + id,
       success: result => {
         wx.hideLoading()
 
@@ -28,7 +28,7 @@ Page({
 
         if (!data.code) {
           this.setData({
-            product: data.data
+            movie: data.data
           })
         } else {
           setTimeout(() => {
@@ -43,6 +43,34 @@ Page({
           wx.navigateBack()
         }, 2000)
       }
+    })
+  },
+
+  addComment(){
+    wx.showActionSheet({
+      itemList: ['文字', '音频'],
+      success(res) {
+        console.log(res.tapIndex)
+        switch (res.tapIndex){
+            case 0 :
+              console.log('文字')
+              break;
+            case 1 :
+              console.log('音频')
+              break;
+        }
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+
+  checkComments(){
+    
+    wx.navigateTo({
+      
+      url: `/pages/comment/comment?id=${this.data.movie[0].id}`
     })
   },
 

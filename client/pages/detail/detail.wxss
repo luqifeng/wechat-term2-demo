@@ -10,7 +10,7 @@
   display: block; 
   margin: 0 auto; 
   width: 370rpx;
-  height: 370rpx;
+  height: 570rpx;
 }
 
 .product-name {
