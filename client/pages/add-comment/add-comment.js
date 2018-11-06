@@ -1,6 +1,8 @@
 // pages/add-comment/add-comment.js
 const qcloud = require('../../vendor/wafer2-client-sdk/index')
 const config = require('../../config')
+const recorderManager = wx.getRecorderManager()
+const innerAudioContext = wx.createInnerAudioContext()
 Page({
 
   /**
@@ -10,6 +12,106 @@ Page({
     product: {},
     commentValue: '',
     commentImages: [],
+    movie: [],
+    tempFilePath: '',
+  },
+
+  startRecord(){
+    recorderManager.start()
+  },
+
+  stopRecord() {
+    recorderManager.stop()
+    recorderManager.onStop((res) => {
+      var that = this
+      this.setData({
+        tempFilePath : res.tempFilePath
+      })
+      console.log(res.tempFilePath)
+      innerAudioContext.src = res.tempFilePath
+      innerAudioContext.play()
+      this.uploadFile()
+    })
+    
+  },
+
+  //播放声音
+  uploadFile: function () {
+    var that = this
+    wx.uploadFile({
+      url: 'https://740832986.lqf.name/weapp/upload', //仅为示例，非真实的接口地址
+      filePath: that.data.tempFilePath,
+      name: 'file',
+      success(res) {
+        //data = res.data
+        console.log(res)
+        that.setData({
+          tempFilePath: JSON.parse(res.data).data.imgUrl
+        })
+        console.log(that.data.tempFilePath)
+        wx.downloadFile({
+          url: that.data.tempFilePath, //仅为示例，并非真实的资源
+          success(res) {
+            // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+            console.log(res)
+            if (res.statusCode === 200) {
+              
+              innerAudioContext.src = res.tempFilePath
+              //console.log(innerAudioContext)
+              innerAudioContext.play({
+                success(res){
+                  console.log(res)
+                },
+                fail(res){
+                  console.log(res)
+                }
+              })
+            }
+          },
+          fail(res) {
+            console.log(res)
+          }
+        })
+      },
+      fail(res) {
+        console.log(res)
+      }
+    })
+    
+
+  },
+
+  getMovie(id) {
+    wx.showLoading({
+      title: '商品数据加载中...',
+    })
+
+    qcloud.request({
+      url: config.service.movieDetail + id,
+      success: result => {
+        wx.hideLoading()
+
+        let data = result.data
+        console.log(data);
+
+        if (!data.code) {
+          this.setData({
+            movie: data.data
+          })
+        } else {
+          setTimeout(() => {
+            wx.navigateBack()
+          }, 2000)
+        }
+      },
+      fail: () => {
+        wx.hideLoading()
+
+        setTimeout(() => {
+          wx.navigateBack()
+        }, 2000)
+      }
+    })
   },
 
   uploadImage(cb) {
@@ -138,6 +240,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getMovie(options.id)
     let product = {
       id: options.id,
       name: options.name,

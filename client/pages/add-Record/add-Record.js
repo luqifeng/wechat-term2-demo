@@ -1,4 +1,4 @@
-// client/pages/my-comments/my-comments.js
+// client/pages/add-Record/add-Record.js
 Page({
 
   /**

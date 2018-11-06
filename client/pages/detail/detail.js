@@ -47,16 +47,24 @@ Page({
   },
 
   addComment(){
+    var that = this;
     wx.showActionSheet({
       itemList: ['文字', '音频'],
       success(res) {
         console.log(res.tapIndex)
         switch (res.tapIndex){
             case 0 :
-              console.log('文字')
+              console.log(this)
+              wx.navigateTo({
+
+                url: `/pages/add-comment/add-comment?id=${that.data.movie[0].id}`
+              })
               break;
             case 1 :
-              console.log('音频')
+              wx.navigateTo({
+
+                url: `/pages/add-Record/add-Record?id=${that.data.movie[0].id}`
+              })
               break;
         }
       },

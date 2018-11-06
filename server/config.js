@@ -36,9 +36,10 @@ const CONF = {
          */
         region: 'ap-guangzhou',
         // Bucket 名称
-        fileBucket: 'qcloudtest',
+        fileBucket: 'movie',
         // 文件夹
-        uploadFolder: ''
+        uploadFolder: 'audios',
+        mimetypes:['audio/x-acc','audio/mpeg','audio/mp3','audio/m4a','video/webm']
     },
 
     // 微信登录态有效期

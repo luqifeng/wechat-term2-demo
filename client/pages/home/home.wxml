@@ -8,7 +8,7 @@
   <text style='font-size:50rpx;'>{{productList[0].title}}</text>
 </view>
 <view style='display:flex;justify-content:center;'>
-  <navigator url='/pages/comment/comment'>{{productList[0].username}}给你推荐了一部电影</navigator>
+  <navigator url='/pages/comment-detail/comment-detail?id={{productList[0].id}}'>{{productList[0].username}}给你推荐了一部电影</navigator>
 </view>
 <view style='position:relative;top:100rpx'>
   <view style='display:flex;flex-direction:row;justify-content:space-around;'>

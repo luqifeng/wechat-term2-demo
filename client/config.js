@@ -27,7 +27,7 @@ var config = {
         movieDetail: `${host}/weapp/movieDetail/`,
 
         //评价细节
-        commentDetail: `${host}/weapp/commentDetail`,
+        commentDetail: `${host}/weapp/commentDetail/`,
 
         // 登录地址，用于建立会话
         loginUrl: `${host}/weapp/login`,

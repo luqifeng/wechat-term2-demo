@@ -1,0 +1,22 @@
+<!--client/pages/my-comments/my-comments.wxml-->
+<!--pages/detail/detail.wxml-->
+<view style="display:flex;justify-content:center;">
+  <image style='width:200rpx;height:300rpx;' src='{{comment[0].image}}'></image>
+  
+</view>
+<view style="display:flex;justify-content:center;">{{comment[0].title}}</view>
+
+<view style='display: flex;flex-direction: row;'>
+  <view>
+    <image style='width:200rpx;height:150rpx' mode="aspectFit" src="{{comment[0].user_image}}"></image>
+  </view>
+  <view >
+    <view>{{comment[0].avatar}}的影评</view>
+    <view>{{comment[0].content}}</view>
+  </view>
+</view>
+
+<view class='opr-cnt'>
+  <view class='opr-trolley' bindtap='collectComments'>收藏影评</view>
+  <view class='opr-buy' bindtap='addComment'>写影评</view>
+</view>

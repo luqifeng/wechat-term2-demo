@@ -1,0 +1,29 @@
+/* client/pages/my-comments/my-comments.wxss */
+
+.opr-cnt {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+.opr-trolley,
+.opr-buy {
+  flex: 1;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #34373D;
+  font-weight: bold;
+}
+
+.opr-trolley {
+  background: rgba(245, 224, 105, 0.6);
+}
+
+.opr-buy {
+  background: #F5E069;
+}

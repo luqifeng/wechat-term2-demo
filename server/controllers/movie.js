@@ -44,7 +44,7 @@ module.exports = {
     let commentID = ctx.params.id
 
     //if (!isNaN(user)) {
-    ctx.state.data = await DB.query("SELECT * FROM comment where id = ?;", [commentID])
+    ctx.state.data = await DB.query("SELECT * FROM comment join movies on comment.movie_id = movies.id where comment.id = ?;", [commentID])
     //} else {
     //  ctx.state.data = [user]
     //}
