@@ -75,7 +75,7 @@ Page({
 
   getMovie(id) {
     wx.showLoading({
-      title: '商品数据加载中...',
+      title: '电影数据加载中...',
     })
 
     qcloud.request({
@@ -239,7 +239,8 @@ Page({
     this.setData({
       product: product,
       commentType: options.type,
-      comment: options.comment
+      comment: options.comment || '',
+      commentValue: options.comment || ''
     })
   },
 

@@ -27,3 +27,15 @@
 .opr-buy {
   background: #F5E069;
 }
+
+.comment-btn {
+  margin: 34rpx auto;
+  width: 250rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #F5E069;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  color: #34373D;
+}

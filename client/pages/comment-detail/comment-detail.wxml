@@ -11,8 +11,13 @@
     <image style='width:200rpx;height:150rpx' mode="aspectFit" src="{{comment[0].user_image}}"></image>
   </view>
   <view >
-    <view>{{comment[0].avatar}}的影评</view>
-    <view>{{comment[0].content}}</view>
+    <view>{{comment[0].username}}的影评</view>
+    <view class='comment-cnt' wx:if="{{comment[0].type==0}}">
+      <view class='comment-ipt'  maxlength='255' >{{comment[0].content}}</view>
+    </view>
+    <view class='comment-cnt' wx:else>
+      <view class="comment-btn" data-url='{{comment[0].record}}' bindtap="listentComment">点击听录音</view>
+    </view>
   </view>
 </view>
 

@@ -1,6 +1,7 @@
 // client/pages/my-comments/my-comments.js
 const qcloud = require('../../vendor/wafer2-client-sdk/index')
 const config = require('../../config')
+const innerAudioContext = wx.createInnerAudioContext()
 Page({
 
   /**
@@ -14,7 +15,7 @@ Page({
 
   getComment(id) {
     wx.showLoading({
-      title: '商品数据加载中...',
+      title: '电影数据加载中...',
     })
 
     qcloud.request({
@@ -46,6 +47,35 @@ Page({
       }
     })
   },
+
+  listentComment(event) {
+    console.log(event)
+    wx.downloadFile({
+      url: event.currentTarget.dataset.url, //仅为示例，并非真实的资源
+      success(res) {
+        // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+        console.log(res)
+        if (res.statusCode === 200) {
+
+          innerAudioContext.src = res.tempFilePath
+          //console.log(innerAudioContext)
+          innerAudioContext.play({
+            success(res) {
+              console.log(res)
+            },
+            fail(res) {
+              console.log(res)
+            }
+          })
+        }
+      },
+      fail(res) {
+        console.log(res)
+      }
+    })
+
+  },
+
 
   addComment() {
     var that = this

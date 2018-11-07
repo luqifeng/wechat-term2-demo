@@ -19,7 +19,7 @@ Page({
 
   getMovie(id) {
     wx.showLoading({
-      title: '商品数据加载中...',
+      title: '电影数据加载中...',
     })
 
     qcloud.request({
@@ -80,7 +80,7 @@ Page({
   backComment(){
     if (this.data.commentType == 0) {
       wx.navigateTo({
-        url: `/pages/add-comment/add-comment?id=${this.data.movie[0].id}&type=${this.data.commentType}&content=${this.data.commentValue}`
+        url: `/pages/add-comment/add-comment?id=${this.data.movie[0].id}&type=${this.data.commentType}&comment=${this.data.commentValue}`
       })
     } else {
       wx.navigateTo({
