@@ -1,0 +1,16 @@
+<!--client/pages/comment-preview/comment-preview.wxml-->
+<view class='product-card'>
+  <image class='product-image' src='{{movie[0].image}}'></image>
+  <view class='product-info'>
+    <view class='product-name'>{{movie[0].title}}</view>
+    <view class='product-price'></view>
+  </view>
+</view>
+<view class='comment-cnt' wx:if="{{commentType==0}}">
+  <view class='comment-ipt'  maxlength='255' >{{commentValue}}</view>
+</view>
+<view class='comment-cnt' wx:else>
+  <view class="comment-btn" bindtap="listentComment">听录音</view>
+</view>
+<view class="comment-btn" bindtap="backComment">返回编辑</view>
+<view class="comment-btn" bindtap="addComment">提交评价</view>

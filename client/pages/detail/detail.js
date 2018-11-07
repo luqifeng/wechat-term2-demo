@@ -57,13 +57,13 @@ Page({
               console.log(this)
               wx.navigateTo({
 
-                url: `/pages/add-comment/add-comment?id=${that.data.movie[0].id}`
+                url: `/pages/add-comment/add-comment?id=${that.data.movie[0].id}&type=0`
               })
               break;
             case 1 :
               wx.navigateTo({
 
-                url: `/pages/add-Record/add-Record?id=${that.data.movie[0].id}`
+                url: `/pages/add-comment/add-comment?id=${that.data.movie[0].id}&type=1`
               })
               break;
         }

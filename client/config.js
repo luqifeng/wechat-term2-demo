@@ -29,6 +29,9 @@ var config = {
         //评价细节
         commentDetail: `${host}/weapp/commentDetail/`,
 
+        //收藏评论
+        addCollections: `${host}/weapp/addCollection/`,
+
         // 登录地址，用于建立会话
         loginUrl: `${host}/weapp/login`,
 

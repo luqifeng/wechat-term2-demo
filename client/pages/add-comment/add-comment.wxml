@@ -6,8 +6,10 @@
     <view class='product-price'></view>
   </view>
 </view>
-<view class='comment-cnt'>
-  <textarea class='comment-ipt' placeholder-class='comment-placeholder' placeholder='请填写你的评价' auto-focus maxlength='255' bindinput='onInput'></textarea>
+<view class='comment-cnt' wx:if="{{commentType==0}}">
+  <textarea class='comment-ipt' placeholder-class='comment-placeholder' placeholder='请填写你的评价' auto-focus maxlength='255' bindinput='onInput'>{{comment}}</textarea>
 </view>
-<view class="comment-btn {{!commentValue ? 'dis' : ''}}" bindtouchstart='startRecord' bindtouchend='stopRecord'>录音</view>
-<view class="comment-btn {{!commentValue ? 'dis' : ''}}" bindtap="addComment">提交评价</view>
+<view class='comment-cnt' wx:else>
+  <view class="comment-btn {{!commentValue ? 'dis' : ''}}" bindtouchstart='startRecord' bindtouchend='stopRecord'>录音</view>
+</view>
+<view class="comment-btn {{!commentValue ? 'dis' : ''}}" bindtap="previewComment">预览评价</view>

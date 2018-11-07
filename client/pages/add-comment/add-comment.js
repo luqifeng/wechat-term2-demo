@@ -14,6 +14,8 @@ Page({
     commentImages: [],
     movie: [],
     tempFilePath: '',
+    commentType: 0,
+    comment:'',
   },
 
   startRecord(){
@@ -35,6 +37,19 @@ Page({
     
   },
 
+  previewComment() {
+    if (this.data.commentType == 0){
+      wx.navigateTo({
+        url: `/pages/comment-preview/comment-preview?id=${this.data.movie[0].id}&type=${this.data.commentType}&content=${this.data.commentValue}`
+      })
+    } else {
+      wx.navigateTo({
+        url: `/pages/comment-preview/comment-preview?id=${this.data.movie[0].id}&type=${this.data.commentType}&fileUrl=${this.data.tempFilePath}`
+      })
+    }
+    
+  },
+
   //播放声音
   uploadFile: function () {
     var that = this
@@ -49,29 +64,6 @@ Page({
           tempFilePath: JSON.parse(res.data).data.imgUrl
         })
         console.log(that.data.tempFilePath)
-        wx.downloadFile({
-          url: that.data.tempFilePath, //仅为示例，并非真实的资源
-          success(res) {
-            // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
-            console.log(res)
-            if (res.statusCode === 200) {
-              
-              innerAudioContext.src = res.tempFilePath
-              //console.log(innerAudioContext)
-              innerAudioContext.play({
-                success(res){
-                  console.log(res)
-                },
-                fail(res){
-                  console.log(res)
-                }
-              })
-            }
-          },
-          fail(res) {
-            console.log(res)
-          }
-        })
       },
       fail(res) {
         console.log(res)
@@ -243,12 +235,11 @@ Page({
     this.getMovie(options.id)
     let product = {
       id: options.id,
-      name: options.name,
-      price: options.price,
-      image: options.image
     }
     this.setData({
-      product: product
+      product: product,
+      commentType: options.type,
+      comment: options.comment
     })
   },
 

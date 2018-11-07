@@ -17,7 +17,7 @@ module.exports = {
   myMovieList: async ctx => {
     let user = ctx.state.$wxInfo.userinfo.openId
 
-    ctx.state.data = await DB.query("SELECT * FROM comment join movies on comment.movie_id = movies.id where comment.user = ?;",[user])
+    ctx.state.data = await DB.query("SELECT * FROM comment join movies on comment.movie_id = movies.id left join collections on comment.id = collections.comment_id  where comment.user = ? or collections.user = ?;",[user,user])
     
   },
 
@@ -25,7 +25,7 @@ module.exports = {
     
     let movieID = ctx.request.query.movie_id
 
-    ctx.state.data = await DB.query("SELECT * FROM comment join movies on comment.movie_id = movies.id where comment.movie_id = ?;", [movieID])
+    ctx.state.data = await DB.query("SELECT * FROM comment where comment.movie_id = ?;", [movieID])
 
   },
 
@@ -40,11 +40,25 @@ module.exports = {
 
   },
 
+  addCollection: async ctx => {
+    let commentID = ctx.params.id
+    let user = ctx.state.$wxInfo.userinfo.openId
+
+    await DB.query('INSERT INTO collections(user,comment_id ) VALUES (?, ?)', [user, commentID])
+
+    //if (!isNaN(user)) {
+    ctx.state.data = await DB.query("SELECT * FROM movies where id = ?;", [commentID])
+    //} else {
+    //  ctx.state.data = [user]
+    //}
+
+  },
+
   commentDetail: async ctx => {
     let commentID = ctx.params.id
 
     //if (!isNaN(user)) {
-    ctx.state.data = await DB.query("SELECT * FROM comment join movies on comment.movie_id = movies.id where comment.id = ?;", [commentID])
+    ctx.state.data = await DB.query("SELECT *,comment.id as comment_id FROM comment join movies on comment.movie_id = movies.id where comment.id = ?;", [commentID])
     //} else {
     //  ctx.state.data = [user]
     //}

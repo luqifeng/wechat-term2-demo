@@ -7,7 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    comment:[]
+    movie_id:0,
+    comment:[],
+    comment_id:0
   },
 
   getComment(id) {
@@ -25,7 +27,8 @@ Page({
 
         if (!data.code) {
           this.setData({
-            comment: data.data
+            comment: data.data,
+            movie_id: data.data[0].movie_id
           })
         } else {
           setTimeout(() => {
@@ -33,7 +36,8 @@ Page({
           }, 2000)
         }
       },
-      fail: () => {
+      fail: (res) => {
+        console.log(res);
         wx.hideLoading()
 
         setTimeout(() => {
@@ -44,16 +48,25 @@ Page({
   },
 
   addComment() {
+    var that = this
     wx.showActionSheet({
       itemList: ['文字', '音频'],
+      
       success(res) {
         console.log(res.tapIndex)
         switch (res.tapIndex) {
           case 0:
-            console.log('文字')
+            console.log(this)
+            wx.navigateTo({
+
+              url: `/pages/add-comment/add-comment?id=${that.data.movie_id}&type=0`
+            })
             break;
           case 1:
-            console.log('音频')
+            wx.navigateTo({
+
+              url: `/pages/add-comment/add-comment?id=${that.data.movie_id}&type=1`
+            })
             break;
         }
       },
@@ -65,16 +78,50 @@ Page({
 
   collectComments() {
 
-    wx.navigateTo({
+    qcloud.request({
+      url: config.service.addCollections + this.data.comment_id,
+      login: true,
+      method: 'GET',
+      data: {
+        comment_id: this.data.comment_id,
+      },
+      success: result => {
+        wx.hideLoading()
+        console.log(result)
+        let data = result.data
 
-      url: `/pages/comment/comment?id=${this.data.movie[0].id}`
+        if (!data.code) {
+          wx.showToast({
+            title: '收藏成功'
+          })
+
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '收藏失败'
+          })
+        }
+      },
+      fail: (res) => {
+        console.log(res)
+        wx.hideLoading()
+
+        wx.showToast({
+          icon: 'none',
+          title: '收藏失败'
+        })
+      }
     })
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      comment_id: options.id
+    })
     this.getComment(options.id)
   },
 

@@ -67,5 +67,6 @@ router.get('/myMovieList', validationMiddleware,  controllers.movie.myMovieList)
 router.get('/movieComments', validationMiddleware, controllers.movie.movieComments)
 router.get('/movieDetail/:id', validationMiddleware, controllers.movie.movieDetail)
 router.get('/commentDetail/:id', validationMiddleware, controllers.movie.commentDetail)
+router.get('/addCollection/:id', validationMiddleware, controllers.movie.addCollection)
 
 module.exports = router

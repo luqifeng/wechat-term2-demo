@@ -25,7 +25,12 @@
         </view>
         <view >
           <view>{{item.title}}</view>
-          <view>{{item.content}}</view>
+          <view class='comment-cnt' wx:if="{{item.type==0}}">
+            <view class='comment-ipt'  maxlength='255' >{{item.content}}</view>
+          </view>
+          <view class='comment-cnt' wx:else>
+            <view style='background: #CCCCCC' class="comment-btn" data-url='{{item.record}}' bindtap="listentComment">点击听录音</view>
+          </view>
         </view>
       </view>
     </view>
