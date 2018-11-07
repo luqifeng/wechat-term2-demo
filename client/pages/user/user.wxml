@@ -16,8 +16,13 @@
     <view class="user-name">{{userInfo.nickName}}</view>
   </view>
   <view class="user-split"></view>
-  
-  
+  <view style='display: flex;flex-direction: row;'>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view >
+          <text >{{array[index]}}</text>       
+      </view>
+    </picker>
+  </view>
     <view wx:for="{{commentList}}" wx:key="id" >
       <view style='display: flex;flex-direction: row;'>
         <view>

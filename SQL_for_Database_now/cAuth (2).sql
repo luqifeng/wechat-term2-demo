@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 2018-11-07 09:03:34
+-- Generation Time: 2018-11-07 17:26:40
 -- 服务器版本： 5.7.18
 -- PHP Version: 5.6.30
 
@@ -61,7 +61,9 @@ CREATE TABLE `collections` (
 --
 
 INSERT INTO `collections` (`id`, `user`, `comment_id`) VALUES
-(1, 'oZjVG490EaAlMFxLukVlXQGNPFKY', 1);
+(1, 'oZjVG490EaAlMFxLukVlXQGNPFKY', 1),
+(3, 'oZjVG490EaAlMFxLukVlXQGNPFKY', 5),
+(2, 'oZjVG490EaAlMFxLukVlXQGNPFKY', 9);
 
 -- --------------------------------------------------------
 
@@ -87,15 +89,9 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`id`, `type`, `user`, `username`, `avatar`, `content`, `record`, `movie_id`, `user_image`, `create_time`) VALUES
-(1, 0, 'oZjVG490EaAlMFxLukVlXQGNPFKY', '阿斯蒂芬', 'ddd', 'sss', 'eee', 1, 'https://wx.qlogo.cn/mmopen/vi_32/A90k8ZstsFBkJB79XHJCpqw6tpqZaIxiaTKwyeUPwbFib7xbeQjXFIMibfsJX3qcSOK4dYNe5Hl2r169ibB65X82dg/132', '2018-11-07 15:49:11'),
-(2, 0, 'oZjVG490EaAlMFxLukVlXQGNPFKY', 'nnn', 'aaa', 'ccc', 'rrr', 2, 'https://wx.qlogo.cn/mmopen/vi_32/A90k8ZstsFBkJB79XHJCpqw6tpqZaIxiaTKwyeUPwbFib7xbeQjXFIMibfsJX3qcSOK4dYNe5Hl2r169ibB65X82dg/132', '2018-11-06 17:43:51'),
-(3, 0, 'oZjVG490EaAlMFxLukVlXQGNPFKY', '吕奇峰 QiFeng', NULL, NULL, NULL, 2, 'https://wx.qlogo.cn/mmopen/vi_32/A90k8ZstsFBkJB79XHJCpqw6tpqZaIxiaTKwyeUPwbFib7xbeQjXFIMibfsJX3qcSOK4dYNe5Hl2r169ibB65X82dg/132', '2018-11-07 15:49:54'),
-(4, 0, 'oZjVG490EaAlMFxLukVlXQGNPFKY', '吕奇峰 QiFeng', NULL, '阿斯顿发生的', NULL, 2, 'https://wx.qlogo.cn/mmopen/vi_32/A90k8ZstsFBkJB79XHJCpqw6tpqZaIxiaTKwyeUPwbFib7xbeQjXFIMibfsJX3qcSOK4dYNe5Hl2r169ibB65X82dg/132', '2018-11-07 15:52:31'),
 (5, 1, 'oZjVG490EaAlMFxLukVlXQGNPFKY', '吕奇峰 QiFeng', NULL, NULL, 'https://movie-1251366251.cos.ap-guangzhou.myqcloud.com/audios/1541577427858-Xl8CU3SOF.webm', 2, 'https://wx.qlogo.cn/mmopen/vi_32/A90k8ZstsFBkJB79XHJCpqw6tpqZaIxiaTKwyeUPwbFib7xbeQjXFIMibfsJX3qcSOK4dYNe5Hl2r169ibB65X82dg/132', '2018-11-07 15:57:18'),
-(6, 0, 'oZjVG490EaAlMFxLukVlXQGNPFKY', '吕奇峰 QiFeng', NULL, '的发斯蒂芬', NULL, 2, 'https://wx.qlogo.cn/mmopen/vi_32/A90k8ZstsFBkJB79XHJCpqw6tpqZaIxiaTKwyeUPwbFib7xbeQjXFIMibfsJX3qcSOK4dYNe5Hl2r169ibB65X82dg/132', '2018-11-07 16:36:13'),
-(7, 0, 'oZjVG490EaAlMFxLukVlXQGNPFKY', '吕奇峰 QiFeng', NULL, '萨达多所', NULL, 2, 'https://wx.qlogo.cn/mmopen/vi_32/A90k8ZstsFBkJB79XHJCpqw6tpqZaIxiaTKwyeUPwbFib7xbeQjXFIMibfsJX3qcSOK4dYNe5Hl2r169ibB65X82dg/132', '2018-11-07 16:37:34'),
-(8, 0, 'oZjVG490EaAlMFxLukVlXQGNPFKY', '吕奇峰 QiFeng', NULL, '萨达多所', NULL, 2, 'https://wx.qlogo.cn/mmopen/vi_32/A90k8ZstsFBkJB79XHJCpqw6tpqZaIxiaTKwyeUPwbFib7xbeQjXFIMibfsJX3qcSOK4dYNe5Hl2r169ibB65X82dg/132', '2018-11-07 16:37:43'),
-(9, 0, 'oZjVG490EaAlMFxLukVlXQGNPFKY', '吕奇峰 QiFeng', NULL, 'a是打发斯蒂芬', NULL, 1, 'https://wx.qlogo.cn/mmopen/vi_32/A90k8ZstsFBkJB79XHJCpqw6tpqZaIxiaTKwyeUPwbFib7xbeQjXFIMibfsJX3qcSOK4dYNe5Hl2r169ibB65X82dg/132', '2018-11-07 16:38:23');
+(9, 0, 'oZjVG490EaAlMFxLukVlXQGNPFKY', '吕奇峰 QiFeng', NULL, 'a是打发斯蒂芬', NULL, 1, 'https://wx.qlogo.cn/mmopen/vi_32/A90k8ZstsFBkJB79XHJCpqw6tpqZaIxiaTKwyeUPwbFib7xbeQjXFIMibfsJX3qcSOK4dYNe5Hl2r169ibB65X82dg/132', '2018-11-07 16:38:23'),
+(10, 0, 'oZjVG490EaAlMFxLukVlXQGNPFKY', '吕奇峰 QiFeng', NULL, '测试', NULL, 6, 'https://wx.qlogo.cn/mmopen/vi_32/A90k8ZstsFBkJB79XHJCpqw6tpqZaIxiaTKwyeUPwbFib7xbeQjXFIMibfsJX3qcSOK4dYNe5Hl2r169ibB65X82dg/132', '2018-11-08 01:25:52');
 
 -- --------------------------------------------------------
 
@@ -118,7 +114,7 @@ CREATE TABLE `cSessionInfo` (
 --
 
 INSERT INTO `cSessionInfo` (`open_id`, `uuid`, `skey`, `create_time`, `last_visit_time`, `session_key`, `user_info`) VALUES
-('oZjVG490EaAlMFxLukVlXQGNPFKY', 'e6e5da13-9930-46d4-a3a0-7fae00c07019', '255cb81a2d5ec694f5353d10cb1b9d30367576fc', '2018-11-06 16:19:36', '2018-11-07 08:51:17', 'zAX0+W/eKu5zRKULrZqoUA==', '{\"openId\":\"oZjVG490EaAlMFxLukVlXQGNPFKY\",\"nickName\":\"吕奇峰 QiFeng\",\"gender\":1,\"language\":\"zh_CN\",\"city\":\"Guangzhou\",\"province\":\"Guangdong\",\"country\":\"China\",\"avatarUrl\":\"https://wx.qlogo.cn/mmopen/vi_32/A90k8ZstsFBkJB79XHJCpqw6tpqZaIxiaTKwyeUPwbFib7xbeQjXFIMibfsJX3qcSOK4dYNe5Hl2r169ibB65X82dg/132\",\"watermark\":{\"timestamp\":1541580677,\"appid\":\"wx798c289d81b932cd\"}}');
+('oZjVG490EaAlMFxLukVlXQGNPFKY', 'e6e5da13-9930-46d4-a3a0-7fae00c07019', 'c44bc017ae0eea3031613506fab5169e5f26eb8c', '2018-11-06 16:19:36', '2018-11-07 17:13:37', 'sV+uymstuQpxTncfLfAblA==', '{\"openId\":\"oZjVG490EaAlMFxLukVlXQGNPFKY\",\"nickName\":\"吕奇峰 QiFeng\",\"gender\":1,\"language\":\"zh_CN\",\"city\":\"Guangzhou\",\"province\":\"Guangdong\",\"country\":\"China\",\"avatarUrl\":\"https://wx.qlogo.cn/mmopen/vi_32/A90k8ZstsFBkJB79XHJCpqw6tpqZaIxiaTKwyeUPwbFib7xbeQjXFIMibfsJX3qcSOK4dYNe5Hl2r169ibB65X82dg/132\",\"watermark\":{\"timestamp\":1541610816,\"appid\":\"wx798c289d81b932cd\"}}');
 
 -- --------------------------------------------------------
 
@@ -311,12 +307,12 @@ ALTER TABLE `trolley_user`
 -- 使用表AUTO_INCREMENT `collections`
 --
 ALTER TABLE `collections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- 使用表AUTO_INCREMENT `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- 使用表AUTO_INCREMENT `movies`
 --

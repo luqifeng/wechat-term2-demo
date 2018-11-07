@@ -10,7 +10,9 @@ Page({
    */
   data: {
     userInfo: null,
-    commentList: []
+    commentList: [],
+    array: ['我的评价', '我的收藏'],
+    index:0,
   },
 
   onTapLogin() {
@@ -24,6 +26,25 @@ Page({
 
     })
   },
+
+  bindPickerChange: function (e) {
+    console.log(e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+    switch (e.detail.value){
+      case '0':
+        console.log('picker发送选择改变，携带值为', e.detail.value)
+        this.getMyComments()
+        break;
+      case '1':
+        console.log('picker发送选择改变，携带值为', e.detail.value)
+        this.getMyCollections()
+        break;
+    }
+    console.log("fff")
+  },
+
 
   listentComment(event) {
     console.log(event)
@@ -55,11 +76,49 @@ Page({
 
   getMyComments() {
     wx.showLoading({
-      title: '刷新购物车数据...',
+      title: '刷新电影数据...',
     })
-    //console.log(this.data.userInfo)
+    console.log(this.data.userInfo)
     qcloud.request({
-      url: config.service.myMovieList,
+      url: config.service.myCommentList,
+      login: true,
+      // data: {
+      //   user: this.data.userInfo['openId']
+      // },
+      success: result => {
+        wx.hideLoading()
+        let data = result.data
+        console.log(data)
+        if (!data.code) {
+          this.setData({
+            commentList: data.data
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '数据刷新失败',
+          })
+        }
+      },
+      fail: (result) => {
+        console.log(result)
+        wx.hideLoading()
+
+        wx.showToast({
+          icon: 'none',
+          title: '数据刷新失败',
+        })
+      }
+    })
+  },
+
+  getMyCollections() {
+    wx.showLoading({
+      title: '刷新电影数据...',
+    })
+    console.log(this.data.userInfo)
+    qcloud.request({
+      url: config.service.myCollectionList,
       login: true,
       // data: {
       //   user: this.data.userInfo['openId']

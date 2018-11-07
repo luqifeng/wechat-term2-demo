@@ -7,5 +7,10 @@
 
 <view class='opr-cnt'>
   <view class='opr-trolley' bindtap='checkComments'>查看影评</view>
-  <view class='opr-buy' bindtap='addComment'>添加影评</view>
+  <view class='opr-buy' wx:if="{{haveComment}}">
+    <view id="{{checkMe[0].comment_id}}" bindtap='checkComment'>查看我的影评</view>
+  </view>
+  <view class='opr-buy' wx:else>
+    <view bindtap='addComment'>添加影评</view>
+  </view>
 </view>

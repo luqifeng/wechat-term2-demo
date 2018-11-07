@@ -22,6 +22,17 @@
 </view>
 
 <view class='opr-cnt'>
-  <view class='opr-trolley' bindtap='collectComments'>收藏影评</view>
-  <view class='opr-buy' bindtap='addComment'>写影评</view>
+  <view class='opr-trolley' wx:if="{{!haveCollection}}">
+    <view  bindtap='collectComments'>收藏影评</view>
+  </view>
+  <view class='opr-trolley' wx:else>
+    <view>已收藏</view>
+  </view>
+  <view class='opr-buy' wx:if="{{!haveComment}}">
+    <view bindtap='addComment'>写影评</view>
+  </view>
+  <view class='opr-buy' wx:else>
+    <view bindtap='toComment'>我的评价</view>
+  </view>
+    
 </view>

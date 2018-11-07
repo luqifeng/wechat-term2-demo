@@ -32,6 +32,18 @@ var config = {
         //收藏评论
         addCollections: `${host}/weapp/addCollection/`,
 
+        //检查我的评论
+        checkMyComment: `${host}/weapp/checkMyComment/`,
+
+        //检查我的收藏
+        checkMyCollection: `${host}/weapp/checkMyCollection/`,
+
+          //获取我的收藏
+        myCollectionList: `${host}/weapp/myCollectionList/`,
+
+          //获取我的评价
+        myCommentList: `${host}/weapp/myCommentList/`,
+
         // 登录地址，用于建立会话
         loginUrl: `${host}/weapp/login`,
 

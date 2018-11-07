@@ -68,5 +68,9 @@ router.get('/movieComments', validationMiddleware, controllers.movie.movieCommen
 router.get('/movieDetail/:id', validationMiddleware, controllers.movie.movieDetail)
 router.get('/commentDetail/:id', validationMiddleware, controllers.movie.commentDetail)
 router.get('/addCollection/:id', validationMiddleware, controllers.movie.addCollection)
+router.get('/checkMyComment/:id', validationMiddleware, controllers.movie.checkMyComment)
+router.get('/checkMyCollection/:id', validationMiddleware, controllers.movie.checkMyCollection) 
+router.get('/myCommentList/', validationMiddleware, controllers.movie.myCommentList)
+router.get('/myCollectionList/', validationMiddleware, controllers.movie.myCollectionList)
 
 module.exports = router

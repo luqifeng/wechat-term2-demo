@@ -7,7 +7,7 @@ module.exports = {
    */
 
   home: async ctx => {
-    ctx.state.data = await DB.query("SELECT * FROM comment join movies on comment.movie_id = movies.id ORDER BY RAND() LIMIT 1 ;")
+    ctx.state.data = await DB.query("SELECT *,comment.id as comment_id FROM comment join movies on comment.movie_id = movies.id ORDER BY RAND() LIMIT 1 ;")
   },
 
   movieList: async ctx => {
@@ -19,6 +19,20 @@ module.exports = {
 
     ctx.state.data = await DB.query("SELECT * FROM comment join movies on comment.movie_id = movies.id left join collections on comment.id = collections.comment_id  where comment.user = ? or collections.user = ?;",[user,user])
     
+  },
+
+  myCommentList: async ctx => {
+    let user = ctx.state.$wxInfo.userinfo.openId
+
+    ctx.state.data = await DB.query("SELECT * FROM comment join movies on comment.movie_id = movies.id  where comment.user = ?;", [user])
+
+  },
+
+  myCollectionList: async ctx => {
+    let user = ctx.state.$wxInfo.userinfo.openId
+
+    ctx.state.data = await DB.query("SELECT * FROM comment join movies on comment.movie_id = movies.id join collections on comment.id = collections.comment_id  where collections.user = ?;", [user])
+
   },
 
   movieComments: async ctx => {
@@ -63,6 +77,20 @@ module.exports = {
     //  ctx.state.data = [user]
     //}
 
+  },
+
+  checkMyComment: async ctx => {
+    let movieID = ctx.params.id
+    let user = ctx.state.$wxInfo.userinfo.openId
+
+    ctx.state.data = await DB.query("SELECT *, comment.id as comment_id FROM comment join movies on comment.movie_id = movies.id  where movies.id = ? and comment.user = ?;", [movieID ,user])
+  },
+
+  checkMyCollection: async ctx => {
+    let commentID = ctx.params.id
+    let user = ctx.state.$wxInfo.userinfo.openId
+
+    ctx.state.data = await DB.query("SELECT * FROM collections where comment_id = ? and user= ?;", [commentID, user])
   },
 
 

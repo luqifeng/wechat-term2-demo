@@ -10,7 +10,11 @@ Page({
   data: {
     movie_id:0,
     comment:[],
-    comment_id:0
+    comment_id:0,
+    haveComment:false,
+    haveCollection:false,
+    myComment:[],
+    myCollection:[],
   },
 
   getComment(id) {
@@ -31,6 +35,33 @@ Page({
             comment: data.data,
             movie_id: data.data[0].movie_id
           })
+
+          qcloud.request({
+            url: config.service.checkMyComment + this.data.movie_id,
+            success: result => {
+              wx.hideLoading()
+
+              let data = result.data
+              console.log(data);
+
+              if (!data.code) {
+                if (data.data.length > 0) {
+                  this.setData({
+                    haveComment: true,
+                    myComment: data.data
+                  })
+                }
+                console.log(this.data);
+
+              } else {
+
+              }
+            },
+            fail: (res) => {
+              console.log(res)
+            }
+          })
+
         } else {
           setTimeout(() => {
             wx.navigateBack()
@@ -46,7 +77,37 @@ Page({
         }, 2000)
       }
     })
+
+    
+
+    qcloud.request({
+      url: config.service.checkMyCollection + id,
+      success: result => {
+        wx.hideLoading()
+
+        let data = result.data
+        console.log(data);
+
+        if (!data.code) {
+          if (data.data.length > 0) {
+            this.setData({
+              haveCollection: true,
+              myCollection: data.data
+            })
+          }
+          console.log(this.data);
+
+        } else {
+
+        }
+      },
+      fail: (res) => {
+        console.log(res)
+      }
+    })
   },
+
+  
 
   listentComment(event) {
     console.log(event)
@@ -103,6 +164,14 @@ Page({
       fail(res) {
         console.log(res.errMsg)
       }
+    })
+  },
+
+  toComment() {
+    //console.log(event)
+    wx.navigateTo({
+
+      url: `/pages/comment-detail/comment-detail?id=${this.data.myComment[0].comment_id}`
     })
   },
 

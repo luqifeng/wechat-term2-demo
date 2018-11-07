@@ -11,11 +11,13 @@ Page({
    */
   data: {
     movie: [],
+    checkMe: [],
+    haveComment:false,
   },
 
   getProduct(id){
     wx.showLoading({
-      title: '商品数据加载中...',
+      title: '电影数据加载中...',
     })
 
     qcloud.request({
@@ -44,6 +46,35 @@ Page({
         }, 2000)
       }
     })
+
+    qcloud.request({
+      url: config.service.checkMyComment + id,
+      success: result => {
+        wx.hideLoading()
+
+        let data = result.data
+        console.log(data);
+
+        if (!data.code) {
+          if(data.data.length>0){
+            this.setData({
+              haveComment: true,
+              checkMe: data.data
+            })
+          }
+          console.log(this.data);
+          
+        } else {
+
+        }
+      },
+      fail: (res) => {
+        console.log(res)
+      }
+    })
+
+    
+
   },
 
   addComment(){
@@ -79,6 +110,14 @@ Page({
     wx.navigateTo({
       
       url: `/pages/comment/comment?id=${this.data.movie[0].id}`
+    })
+  },
+
+  checkComment(event) {
+    console.log(event)
+    wx.navigateTo({
+
+      url: `/pages/comment-detail/comment-detail?id=${event.currentTarget.id}`
     })
   },
 
